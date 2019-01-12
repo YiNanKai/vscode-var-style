@@ -1,10 +1,11 @@
+![icon](https://raw.githubusercontent.com/YiNanKai/vscode-var-style/master/icon.png)
 # Var Style
 
 **Change your variable style between [ Camel Style, Php Style, Constant Style, Pascal Style ]**
 
 ## Demo
 
-
+![Demo](https://raw.githubusercontent.com/YiNanKai/vscode-var-style/master/demo.gif)
 
 ## KeyBindings
 
