@@ -1,0 +1,7 @@
+out
+.vscode
+node_modules
+_site
+Gemfile.lock
+**/*.vsix
+.vscode-test
