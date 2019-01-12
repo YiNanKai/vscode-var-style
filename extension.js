@@ -19,74 +19,66 @@ function activate(context) {
   let disposable1 = vscode.commands.registerCommand(
     'extension.camelStyle',
     function() {
-			const editor = vscode.window.activeTextEditor
-			
+      const editor = vscode.window.activeTextEditor
+
       // const selection = editor.selection
       // get all the selections
       const allSelections = editor.selections
-			
-			editor.edit(editBuilder => {
-        allSelections.forEach((selection) => {
-          const text = editor.document.getText(selection)
-          editBuilder.replace(selection, toCamelCase(text));
-        })
-				
-			})
 
+      editor.edit(editBuilder => {
+        allSelections.forEach(selection => {
+          const text = editor.document.getText(selection)
+          editBuilder.replace(selection, toCamelCase(text))
+        })
+      })
     }
   )
 
   let disposable2 = vscode.commands.registerCommand(
     'extension.phpStyle',
     function() {
-			const editor = vscode.window.activeTextEditor
-			
-			const allSelections = editor.selections
-			
-			editor.edit(editBuilder => {
-        allSelections.forEach((selection) => {
-          const text = editor.document.getText(selection)
-          editBuilder.replace(selection, toPhp(text));
-        })
-				
-			})
+      const editor = vscode.window.activeTextEditor
 
+      const allSelections = editor.selections
+
+      editor.edit(editBuilder => {
+        allSelections.forEach(selection => {
+          const text = editor.document.getText(selection)
+          editBuilder.replace(selection, toPhp(text))
+        })
+      })
     }
   )
 
   let disposable3 = vscode.commands.registerCommand(
     'extension.constantStyle',
     function() {
-			const editor = vscode.window.activeTextEditor
-			
-			const allSelections = editor.selections
-			
-			editor.edit(editBuilder => {
-        allSelections.forEach((selection) => {
-          const text = editor.document.getText(selection)
-          editBuilder.replace(selection, toConstant(text));
-        })
-				
-			})
+      const editor = vscode.window.activeTextEditor
 
+      const allSelections = editor.selections
+
+      editor.edit(editBuilder => {
+        allSelections.forEach(selection => {
+          const text = editor.document.getText(selection)
+          editBuilder.replace(selection, toConstant(text))
+        })
+      })
     }
   )
 
   let disposable4 = vscode.commands.registerCommand(
     'extension.pascalStyle',
     function() {
-			const editor = vscode.window.activeTextEditor
-			
-			const allSelections = editor.selections
-			
-			editor.edit(editBuilder => {
-        allSelections.forEach((selection) => {
-          const text = editor.document.getText(selection)
-          editBuilder.replace(selection, toPascal(text));
-        })
-				
-			})
+      const editor = vscode.window.activeTextEditor
 
+      const allSelections = editor.selections
+
+      editor.edit(editBuilder => {
+        allSelections.forEach(selection => {
+          const text = editor.document.getText(selection)
+          editBuilder.replace(selection, toPascal(text))
+        })
+      })
     }
   )
 
@@ -97,46 +89,52 @@ function activate(context) {
 }
 /**
  * 返回字符串打散后的小写字符数组
- * @param {string} text 
+ * @param {string} text
  * @return {Array}
  */
-function getTextArray (text) {
-	const style = getStyle(text)
-	if(style === 'php') {
-		return text.split('_')
-	} else if(style === 'camel') {
-		return text.replace(/([A-Z])/g, '_$1').toLowerCase().split('_')
-	} else if(style === 'pascal') {
-		return text.replace(/([A-Z])/g, '_$1').toLowerCase().split('_').slice(1)
-	} else if(style === 'constant') {
-		return text.split('_').map((item) => item.toLowerCase())
-	} else {
-		return [text]
-	}
-	
+function getTextArray(text) {
+  const style = getStyle(text)
+  if (style === 'php') {
+    return text.split('_')
+  } else if (style === 'camel') {
+    return text
+      .replace(/([A-Z])/g, '_$1')
+      .toLowerCase()
+      .split('_')
+  } else if (style === 'pascal') {
+    return text
+      .replace(/([A-Z])/g, '_$1')
+      .toLowerCase()
+      .split('_')
+      .slice(1)
+  } else if (style === 'constant') {
+    return text.split('_').map(item => item.toLowerCase())
+  } else {
+    return [text]
+  }
 }
-function getStyle (text) {
-	if(isCamel(text)) {
-		return 'camel'
-	} else if(isPascal(text)) {
-		return 'pascal'
-	} else if(isPhp(text)) {
-		return 'php'
-	} else if(isConstant(text)) {
-		return 'constant'
-	} else {
-		return 'unknown'
-	}
+function getStyle(text) {
+  if (isCamel(text)) {
+    return 'camel'
+  } else if (isPascal(text)) {
+    return 'pascal'
+  } else if (isPhp(text)) {
+    return 'php'
+  } else if (isConstant(text)) {
+    return 'constant'
+  } else {
+    return 'unknown'
+  }
 }
 function isCamel(text) {
   return text[0] === text[0].toLowerCase() && text !== text.toLowerCase()
 }
 
-function isPascal(text){
+function isPascal(text) {
   return text[0] === text[0].toUpperCase() && !text.includes('_')
 }
 
-function isPhp (text) {
+function isPhp(text) {
   return text[0] === text[0].toLowerCase() && text.includes('_')
 }
 
@@ -145,61 +143,66 @@ function isConstant(text) {
 }
 /**
  * 转为驼峰式命名 textStyle
- * @param {string} text 
+ * @param {string} text
  */
-function toCamelCase (text) {
-	if(isCamel(text)) {
-		return text
-	} else {
-		return getTextArray(text).map((item, i) => {
-			if(i>0){
-				item = item[0].toUpperCase() + item.substr(1)
-				return item
-			} else {
-				return item
-			}
-		}).join('')
-	}
-
+function toCamelCase(text) {
+  if (isCamel(text)) {
+    return text
+  } else {
+    return getTextArray(text)
+      .map((item, i) => {
+        if (i > 0) {
+          item = item[0].toUpperCase() + item.substr(1)
+          return item
+        } else {
+          return item
+        }
+      })
+      .join('')
+  }
 }
 
 /**
  * 转为帕斯卡命名  TextStyle
- * @param {string} text 
+ * @param {string} text
  */
-function toPascal (text) {
-  if(isPascal(text)) {
-		return text
-	} else {
-		return getTextArray(text).map((item, i) => {
-			item = item[0].toUpperCase() + item.substr(1)
-			return item
-		}).join('')
-	}
+function toPascal(text) {
+  if (isPascal(text)) {
+    return text
+  } else {
+    return getTextArray(text)
+      .map((item, i) => {
+        item = item[0].toUpperCase() + item.substr(1)
+        return item
+      })
+      .join('')
+  }
 }
 
 /**
  * 转为php风格命名  text_style
- * @param {string} text 
+ * @param {string} text
  */
-function toPhp (text) {
-	if(isPhp(text)) {
-		return text
-	} else {
-		return getTextArray(text).join('_')
-	}
+function toPhp(text) {
+  if (isPhp(text)) {
+    return text
+  } else {
+    return getTextArray(text).join('_')
+  }
 }
 
 /**
  * 转为常量式命名 TEXT_STYLE
- * @param {string} text 
+ * @param {string} text
  */
-function toConstant (text) {
-	if(isConstant(text)) {
-		return text
-	} else {
-		return getTextArray(text).join('_').toUpperCase()
-	}
+function toConstant(text) {
+  if (isConstant(text)) {
+    return text
+  } else {
+    return getTextArray(text)
+      .join('_')
+      .toUpperCase()
+  }
 }
 
 exports.activate = activate
