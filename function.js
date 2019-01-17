@@ -13,6 +13,8 @@ function getTextArray (text) {
 		return text.replace(/([A-Z])/g, '_$1').toLowerCase().split('_').slice(1)
 	} else if(style === 'constant') {
 		return text.split('_').map((item) => item.toLowerCase())
+	} else if(style === 'kebab') {
+		return text.split('-')
 	} else {
 		return [text]
 	}
@@ -27,6 +29,8 @@ function getStyle (text) {
 		return 'php'
 	} else if(isConstant(text)) {
 		return 'constant'
+	} else if(isKebab(text)){
+		return 'kebab'
 	} else {
 		return 'unknown'
 	}
@@ -45,6 +49,10 @@ function isPhp (text) {
 
 function isConstant(text) {
   return text[0] === text[0].toUpperCase() && text.includes('_')
+}
+
+function isKebab(text) {
+  return text.includes('-')
 }
 /**
  * 转为驼峰式命名 textStyle
@@ -104,31 +112,23 @@ function toConstant (text) {
 		return getTextArray(text).join('_').toUpperCase()
 	}
 }
-// console.log(toCamelCase('it_is_awesome'))
 
-console.log(toPascal('it_is_awesome'))
-console.log(toCamelCase('it_is_awesome'))
-console.log(toPhp('it_is_awesome'))
-console.log(toConstant('it_is_awesome'))
+/**
+ * 转为中横线命名 text-style
+ * @param {string} text 
+ */
+function toKebab (text) {
+	if(isKebab(text)){
+		return text
+	} else {
+		return getTextArray(text).join('-')
+	}
+}
 
-
-console.log(toPascal('it'))
-console.log(toCamelCase('it'))
-console.log(toPhp('it'))
-console.log(toConstant('it'))
-
-console.log(toPascal('ItIsAwesome'))
-console.log(toCamelCase('ItIsAwesome'))
-console.log(toPhp('ItIsAwesome'))
-console.log(toConstant('ItIsAwesome'))
-
-console.log(toPascal('IT_IS_AWESOME'))
-console.log(toCamelCase('IT_IS_AWESOME'))
-console.log(toPhp('IT_IS_AWESOME'))
-console.log(toConstant('IT_IS_AWESOME'))
-
-// unknown
-console.log(toPascal('mixed_styleText'))
-console.log(toCamelCase('mixed_styleText'))
-console.log(toPhp('mixed_styleText'))
-console.log(toConstant('mixed_styleText'))
+module.exports = {
+	toCamelCase,
+	toPhp,
+	toConstant,
+	toPascal,
+	toKebab
+}

@@ -2,81 +2,94 @@
   "name": "VarStyle",
   "displayName": "Var Style",
   "description": "change variable style",
-	"version": "0.0.1",
-	"publisher": "allen",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/YiNanKai/vscode-var-style"
-	},
+  "version": "0.0.2",
+  "publisher": "allen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YiNanKai/vscode-var-style"
+  },
   "engines": {
     "vscode": "^1.20.0"
-	},
-	"icon": "icon.png",
+  },
+  "icon": "icon.png",
   "categories": [
     "Formatters"
   ],
   "activationEvents": [
     "onCommand:extension.camelStyle",
-		"onCommand:extension.phpStyle",
-		"onCommand:extension.constantStyle",
-    "onCommand:extension.pascalStyle"
+    "onCommand:extension.phpStyle",
+    "onCommand:extension.constantStyle",
+    "onCommand:extension.pascalStyle",
+    "onCommand:extension.kebabStyle"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "extension.camelStyle",
-				"title": "Camel Style",
-				"category": "Var Style"
-			},
-			{
-        "command": "extension.phpStyle",
-				"title": "Php Style",
-				"category": "Var Style"
-			},
-			{
-        "command": "extension.constantStyle",
-				"title": "Constant Style",
-				"category": "Var Style"
+        "title": "Camel Style",
+        "category": "Var Style"
       },
-			{
+      {
+        "command": "extension.phpStyle",
+        "title": "Php Style",
+        "category": "Var Style"
+      },
+      {
+        "command": "extension.constantStyle",
+        "title": "Constant Style",
+        "category": "Var Style"
+      },
+      {
         "command": "extension.pascalStyle",
-				"title": "Pascal Style",
-				"category": "Var Style"
-			}
+        "title": "Pascal Style",
+        "category": "Var Style"
+      },
+      {
+        "command": "extension.kebabStyle",
+        "title": "Kebab Style",
+        "category": "Var Style"
+      }
     ],
     "keybindings": [
       {
         "command": "extension.camelStyle",
-				"key": "shift+alt+q",
-				"when": "editorHasSelection"
-			},
-			{
-        "command": "extension.phpStyle",
-				"key": "shift+alt+w",
-				"when": "editorHasSelection"
-			},
-			{
-        "command": "extension.constantStyle",
-				"key": "shift+alt+e",
-				"when": "editorHasSelection"
+        "key": "shift+alt+q",
+        "when": "editorHasSelection"
       },
-			{
+      {
+        "command": "extension.phpStyle",
+        "key": "shift+alt+w",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "extension.constantStyle",
+        "key": "shift+alt+e",
+        "when": "editorHasSelection"
+      },
+      {
         "command": "extension.pascalStyle",
-				"key": "shift+alt+r",
-				"when": "editorHasSelection"
-			}
+        "key": "shift+alt+r",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "extension.kebabStyle",
+        "key": "shift+alt+t",
+        "when": "editorHasSelection"
+      }
     ]
   },
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "test": "node ./node_modules/vscode/bin/test",
+    "test:util": "jest function"
   },
   "devDependencies": {
-    "typescript": "^3.1.4",
-    "vscode": "^1.1.25",
-    "eslint": "^4.11.0",
+    "@types/mocha": "^2.2.42",
     "@types/node": "^8.10.25",
-    "@types/mocha": "^2.2.42"
+    "eslint": "^4.11.0",
+    "jest": "^23.6.0",
+    "typescript": "^3.1.4",
+    "vscode": "^1.1.25"
   }
 }

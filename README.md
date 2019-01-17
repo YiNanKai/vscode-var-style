@@ -1,7 +1,7 @@
 ![icon](https://raw.githubusercontent.com/YiNanKai/vscode-var-style/master/icon.png)
 # Var Style
 
-**Change your variable style between [ Camel Style, Php Style, Constant Style, Pascal Style ]**
+**Change your variable style between [ Camel Style, Php Style, Constant Style, Pascal Style and so on... ]**
 
 ## Demo
 
@@ -16,3 +16,5 @@
 `shift + alt + e` => Constant Style
 
 `shift + alt + r` => Pascal Style
+
+`shift + alt + t` => Kebab Style
