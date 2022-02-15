@@ -9,7 +9,7 @@
     "url": "https://github.com/YiNanKai/vscode-var-style"
   },
   "engines": {
-    "vscode": "^1.20.0"
+    "vscode": "^1.64.0"
   },
   "icon": "icon.png",
   "categories": [
