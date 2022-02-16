@@ -1,7 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
-
+// @ts-ignore
+import util from './utils';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -18,7 +19,9 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.camelStyle",
     function () {
       const editor = vscode.window.activeTextEditor;
-
+      if (!editor) {
+        return;
+      }
       // const selection = editor.selection
       // get all the selections
       const allSelections = editor.selections;
@@ -36,7 +39,9 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.phpStyle",
     function () {
       const editor = vscode.window.activeTextEditor;
-
+      if (!editor) {
+        return;
+      }
       const allSelections = editor.selections;
 
       editor.edit((editBuilder) => {
@@ -53,7 +58,9 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.constantStyle",
     function () {
       const editor = vscode.window.activeTextEditor;
-
+      if (!editor) {
+        return;
+      }
       const allSelections = editor.selections;
 
       editor.edit((editBuilder) => {
@@ -69,7 +76,9 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.pascalStyle",
     function () {
       const editor = vscode.window.activeTextEditor;
-
+      if (!editor) {
+        return;
+      }
       const allSelections = editor.selections;
 
       editor.edit((editBuilder) => {
@@ -84,7 +93,9 @@ export function activate(context: vscode.ExtensionContext) {
     "extension.kebabStyle",
     function () {
       const editor = vscode.window.activeTextEditor;
-
+      if (!editor) {
+        return;
+      }
       const allSelections = editor.selections;
 
       editor.edit((editBuilder) => {
