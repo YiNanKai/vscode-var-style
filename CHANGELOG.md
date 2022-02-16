@@ -6,4 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+## [0.0.4] - 2022-02-16
+### Added
+- Update LICENSE and CHANGELOG
+
+## [0.0.3] - 2022-02-16
+### Added
+- Support web extension
