@@ -2,7 +2,7 @@
   "name": "var-style",
   "displayName": "Var Style",
   "description": "change variable style",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "allen",
   "repository": {
     "type": "git",
